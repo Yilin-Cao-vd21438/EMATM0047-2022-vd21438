@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<project name="webcrawler" basedir="../../../ChromeDownload/2022-EMATM0047-vd21438-main/webcrawler" default="jar">
+
+    <!-- Initialization variables -->
+    <property name="app.name" value="${ant.project.name}"/>
+    <property name="source.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    
+    
+    <!-- files in lib.dir WILL be included in the final JAR -->
+    <property name="lib.dir"    value="lib"/>
+    
+    <!-- ====================================== -->
+    <target name="clean" description="Deletes compiled and generated code">
+        <delete dir="${build.dir}"/>
+    </target>
+    
+    
+    <path id="compile.classpath">
+        <fileset dir="../../../ChromeDownload/2022-EMATM0047-vd21438-main/webcrawler/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    
+
+    <!-- ====================================== -->
+    <target name="compile" depends="clean" description="Compiles the Java code">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${classes.dir}" />
+
+        <javac srcdir="${source.dir}" destdir="${classes.dir}" debug="on" deprecation="on">
+             <classpath refid="compile.classpath"/>
+         </javac>
+
+        <copy todir="${classes.dir}">
+            <fileset dir="../../../ChromeDownload/2022-EMATM0047-vd21438-main/webcrawler/src">
+                <include name="**/*.properties" />
+                <include name="**/*.xml" />
+                <include name="**/*.png" />
+                <include name="**/*.gif" />
+                <include name="**/*.txt" />
+            </fileset>
+        </copy>
+        
+    </target>
+
+    <!-- ====================================== -->
+    <target name="jar" depends="compile" description="Packages the common files into a JAR file">
+        
+        <jar destFile="webcrawler.jar">
+            <!-- files to be included in / -->
+            <fileset dir="${classes.dir}" />
+            <zipgroupfileset dir="../../../ChromeDownload/2022-EMATM0047-vd21438-main/webcrawler/lib" includes="**/*.jar"/>
+            
+            <manifest>
+                <!-- Who is building this jar? -->
+                <attribute name="Built-By" value="${user.name}"/>
+                <!-- Information about the program itself -->
+                <attribute name="Implementation-Vendor" value=""/>
+                <attribute name="Implementation-Title" value="WebCrawler"/>
+                <attribute name="Implementation-Version" value="0.9"/>
+                <attribute name="Main-Class" value="WebCrawler"/>
+            </manifest>
+            
+        </jar>
+
+    </target>
+    
+    <!-- ====================================== -->
+    <target name="test" depends="jar" description="Compiles, jars, and tests">
+        <java classname="Main">
+            <classpath>
+                <pathelement location="webcrawler.jar"/>
+            </classpath>
+        </java>
+    </target>
+    
+
+</project>
