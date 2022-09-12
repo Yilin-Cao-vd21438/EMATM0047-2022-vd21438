@@ -1,7 +1,7 @@
 # EMATM0047-2022-vd21438
 This is the program used in the msc thesis of Yilin Cao-vd21438.
 
-Webcrawler > WorksCrawler.java is the working main for data collection. <br/>
+Webcrawler > WorksCrawler.java is the working main for data collection. Data will be scraped from fan fiction website archiveofourown. <br/>
 Analysis > nlp.py is the working main for data analysis. <br/>
 
 The NLP Models evaluated are: <br/>
