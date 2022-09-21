@@ -1,4 +1,4 @@
-# EMATM0047-2022-vd21438
+# EMATM0047-vd21438
 This is the program used in the msc thesis of Yilin Cao-vd21438.
 
 Webcrawler > WorksCrawler.java is the working main for data collection. Data will be scraped from fan fiction website archiveofourown. <br/>
