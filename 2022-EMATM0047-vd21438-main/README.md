@@ -1,1 +1,1 @@
-Natural language processing project for print and fan fiction classification.
+Print and fan fiction classification by deep learning model approaches.
